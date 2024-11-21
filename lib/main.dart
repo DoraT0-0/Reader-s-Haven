@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:readershaven_app/router/router.dart';
 import 'scripts/createFloader.dart';
+import 'theme/theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc/theme/theme_cubit.dart';
 void main() {
   runApp(const ReadersHavenApp());
 }
@@ -15,27 +18,19 @@ class ReadersHavenApp extends StatefulWidget {
 class _ReadersHavenAppState extends State<ReadersHavenApp> {
   Future<String> pathFolder = createFolderInAppDocDir('books');
   final _router = AppRouter();
-  int thememode = 1;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return BlocProvider(
+    create: (BuildContext context) => ThemeCubit(), 
+    child: BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) { 
+      return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'ReadersHaven',
-      theme: ThemeData(
-        primaryColor: Colors.white70
-      ),
-      darkTheme: ThemeData.dark().copyWith(
-        primaryColor: Colors.black45,
-      ),
-      themeMode: thememode == 1 ? ThemeMode.dark : ThemeMode.light,
+      theme: themeLight,
+      darkTheme: themeDark,
+      themeMode: state.isSwitched == true ? ThemeMode.dark : ThemeMode.light,
       routerConfig: _router.config(),
     );
+  }));
   }
 }
-
-
-
-
-
-
-

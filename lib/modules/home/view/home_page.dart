@@ -28,11 +28,11 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context, child) {
           final tabsRouter = AutoTabsRouter.of(context);
           return Scaffold(
+            backgroundColor: theme.primaryColor,
             body: child,
             bottomNavigationBar: GNav(
               onTabChange: (index) => _openPage(index, tabsRouter),
               selectedIndex: tabsRouter.activeIndex,
-              backgroundColor: theme.primaryColor,
               gap: 8,
               tabs: [
                 GButton(icon: Icons.library_books, text: "Библиотека", textStyle: TextStyle(fontSize: 14)),

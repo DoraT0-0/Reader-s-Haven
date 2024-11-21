@@ -52,9 +52,9 @@ class _LibraryPageState extends State<LibraryPage> {
     final theme = Theme.of(context);
 
     return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: theme.primaryColor,
-
         title: isSearchClicked ? TextField(
           controller: _searchController,
           decoration: InputDecoration(border: InputBorder.none, hintText: "Поиск..."),

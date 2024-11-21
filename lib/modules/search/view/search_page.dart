@@ -14,7 +14,8 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Scaffold(appBar: AppBar(
+    return Scaffold(
+      appBar: AppBar(
         backgroundColor: theme.primaryColor,
 
         title: Text("Поисковик"),
