@@ -16,7 +16,8 @@ class AppRouter extends RootStackRouter {
       AutoRoute(page: SearchRoute.page, path: 'shop'),
       AutoRoute(page: SettingsRoute.page, path: 'settings')
     ]),
-    AutoRoute(page: ReaderRoute.page, path: '/readerpage')
+    AutoRoute(page: ReaderRoute.page, path: '/readerpage'),
+    AutoRoute(page: DescriptionRoute.page, path: '/description')
   ];  
 
   @override
