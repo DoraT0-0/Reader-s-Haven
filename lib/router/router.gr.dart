@@ -24,13 +24,13 @@ import 'package:readershaven_app/modules/settings/view/settings_page.dart'
 class DescriptionRoute extends _i7.PageRouteInfo<DescriptionRouteArgs> {
   DescriptionRoute({
     _i8.Key? key,
-    required String title,
+    required int id,
     List<_i7.PageRouteInfo>? children,
   }) : super(
           DescriptionRoute.name,
           args: DescriptionRouteArgs(
             key: key,
-            title: title,
+            id: id,
           ),
           initialChildren: children,
         );
@@ -43,7 +43,7 @@ class DescriptionRoute extends _i7.PageRouteInfo<DescriptionRouteArgs> {
       final args = data.argsAs<DescriptionRouteArgs>();
       return _i1.DescriptionPage(
         key: args.key,
-        title: args.title,
+        id: args.id,
       );
     },
   );
@@ -52,16 +52,16 @@ class DescriptionRoute extends _i7.PageRouteInfo<DescriptionRouteArgs> {
 class DescriptionRouteArgs {
   const DescriptionRouteArgs({
     this.key,
-    required this.title,
+    required this.id,
   });
 
   final _i8.Key? key;
 
-  final String title;
+  final int id;
 
   @override
   String toString() {
-    return 'DescriptionRouteArgs{key: $key, title: $title}';
+    return 'DescriptionRouteArgs{key: $key, id: $id}';
   }
 }
 
