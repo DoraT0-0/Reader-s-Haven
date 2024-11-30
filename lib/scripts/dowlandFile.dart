@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import '../modules/search/model/model.dart';
 import 'scripts.dart';
 
-Future<void> downloadFile(int index, Future<String> path, List<ListBookDB> listBookDB, context) async {
+Future<void> downloadFiles(int index, Future<String> path, List<ListBookDB> listBookDB, context) async {
     String? fileName = listBookDB[index].title;
     try {
       Dio dio = Dio();

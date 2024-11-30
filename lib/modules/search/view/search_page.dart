@@ -40,7 +40,17 @@ class _SearchPageState extends State<SearchPage> {
         listbookBd_test.add(ListBookDB(response[i]["title"], 'https://drive.google.com/uc?export=download&id=${response[i]["book_url"]}', response[i]["id"]));
       }
       setState(() {
-        listbookBd = listbookBd_test;
+        List<ListBookDB> result = [];
+        Map<int?, ListBookDB> listbookBdMap = {for (var item in listbookBd) item.id: item};
+        for (var item in listbookBd_test) {
+          if (listbookBdMap.containsKey(item.id)) {
+            ListBookDB updatedItem = ListBookDB(item.title, item.url, item.id);
+            result.add(updatedItem);
+          } else {
+            result.add(item);
+          }
+        }
+        listbookBd = result;
         if(!isSearchClicked) displayList = listbookBd;
       });
     }catch(e){
