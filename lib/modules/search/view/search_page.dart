@@ -37,7 +37,7 @@ class _SearchPageState extends State<SearchPage> {
       List response = jsonDecode(res.body);
       List<ListBookDB> listbookBd_test = []; 
       for(int i =0;i < response.length;i++){
-        listbookBd_test.add(ListBookDB(response[i]["title"], response[i]["book_url"], response[i]["id"]));
+        listbookBd_test.add(ListBookDB(response[i]["title"], 'https://drive.google.com/uc?export=download&id=${response[i]["book_url"]}', response[i]["id"]));
       }
       setState(() {
         listbookBd = listbookBd_test;
