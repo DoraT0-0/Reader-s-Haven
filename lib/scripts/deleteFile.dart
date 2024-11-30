@@ -9,14 +9,11 @@ void deleteFile(String path, Function() updateList, context) async{
       if (await fileToDelete.exists()) {
         await fileToDelete.delete();
         showAlert(context, 'Книга удалена');
-        print('Файл успешно удалён!');
         updateList();
       } else {
         showAlert(context, 'Книга не найдена');
-        print('Файл не найден!');
       }
     } catch (e) {
       showAlert(context, 'Ошибка при удалении книги $e');
-      print('Ошибка при удалении файла: $e');
     }
 }

@@ -11,16 +11,13 @@ void addFile(Future<String> path, void Function() updateList, context) async{
     if (filePath != null && filePath.substring(filePath.length-4, filePath.length) == '.pdf') {
       String newFilePath = '${await path}${result!.files.single.name}';
       moveFile(filePath, newFilePath);
-      print('Файл перемещён в: $newFilePath');
       showAlert(context, 'Книга добавлена');
       updateList();
     }else {
       showAlert(context, 'Книга не добавлена');
-      print('Выбор файла отменён');
     }
   } else {
     showAlert(context, 'Книга не выбрана');
-    print('Файл не выбран!');
   }
 }
 
@@ -29,9 +26,8 @@ void moveFile(String oldPath, String newPath) async {
       File oldFile = File(oldPath);
       await oldFile.copy(newPath);
       await oldFile.delete();
-      print('Файл успешно перемещён!');
+    // ignore: empty_catches
     } catch (e) {
-      print('Ошибка при перемещении файла: $e');
     }
 }
 

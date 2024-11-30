@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:dio/dio.dart';
 import 'package:readershaven_app/modules/search/model/listUrlTitle.dart';
 
 import '../../../router/router.gr.dart';
@@ -20,59 +19,7 @@ class CardBookSearch extends StatefulWidget {
 class _CardBookSearchState extends State<CardBookSearch> {
   Future<String> path = createFolderInAppDocDir('books');
 
-  // Future<void> getlen() async{
-  //   try{
-  //     String uri = "http://readershavenapi-dorat0.amvera.io/books";
-  //     var res = await http.get(Uri.parse(uri));
-  //     List response = jsonDecode(res.body);
-  //     setState(() {
-  //       downloading = List.filled(response.length, false);
-  //       progress = List.filled(response.length, 0.0);
-  //     });
-  //   }catch(e){
-  //     print(e);
-  //   }
-  // }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   if(downloading.isEmpty && progress.isEmpty){getlen();}
-  // }
-  Future<void> downloadFile(int index) async {
-    try {
-      // setState(() {
-      //   downloading = List.filled(widget.listBookDB.length, false);
-      //   progress = List.filled(widget.listBookDB.length, 0.0);
-      // });
-      // setState(() {
-      //     downloading[index] = true;
-      //   });
-      Dio dio = Dio();
-      String? fileName = widget.listBookDB[index].title;
-      String savePath = '${await path}/$fileName.pdf';
-      await dio.download(widget.listBookDB[index].url!, savePath, onReceiveProgress: (count, total) {
-        // if(total != -1){
-        //     setState(() {
-        //       progress[index] = (count / total) * 100;
-        //     });
-        //     print('Загрузка: ${progress[index].toStringAsFixed(2)}%');
-        // }
-      });
-      setState(() {
-        // downloading[index] = false;
-        // progress[index] = 0.0;
-        showAlert(context, '$fileName скачан');
-        print('Скачано');
-      });
-    } catch (e) {
-      print(e.toString());
-      // setState(() {
-      //   downloading[index] = false;
-      // });
-    }
-  }
-
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return 
@@ -86,14 +33,7 @@ class _CardBookSearchState extends State<CardBookSearch> {
               title: Text(name, style:TextStyle(fontSize: 22)),
               leading: Icon(Icons.book),
               trailing: 
-              // downloading[index]? SizedBox(width: 22,height: 22,
-              //   child: CircularProgressIndicator(
-              //     value: progress[index] / 100,
-              //     color: theme.indicatorColor,
-              //     strokeWidth: 3,
-              //   ),
-              // ):
-              IconButton(onPressed: () {downloadFile(index);}, icon: Icon(Icons.download, size: 22, color: theme.indicatorColor,)),
+              IconButton(onPressed: () {downloadFile(index, path, widget.listBookDB, context);}, icon: Icon(Icons.download, size: 22, color: theme.indicatorColor,)),
               onTap: ()  {
                   context.router.push(DescriptionRoute(id: widget.listBookDB[index].id!));
               },
